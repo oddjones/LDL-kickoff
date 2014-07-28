@@ -1,0 +1,48 @@
+<!-- @include "partials/header" -->
+<!--
+ ######   #######  ##    ## ######## ######## ##    ## ######## 
+##    ## ##     ## ###   ##    ##    ##       ###   ##    ##    
+##       ##     ## ####  ##    ##    ##       ####  ##    ##    
+##       ##     ## ## ## ##    ##    ######   ## ## ##    ##    
+##       ##     ## ##  ####    ##    ##       ##  ####    ##    
+##    ## ##     ## ##   ###    ##    ##       ##   ###    ##    
+ ######   #######  ##    ##    ##    ######## ##    ##    ##    
+-->
+<div id="pageContent" class="container">
+  <!-- @include "partials/nav/breadcrumb" -->
+   <div id="content" class="col-sm-8">
+    <p>The LDL-Kickoff codekit project has been set up to automatically compile all .KIT files into the root app folder. By default, we have placed all our KIT files in a "kits" folder, within our main BUILD folder. It has also been set up to <strong><em>ignore</em></strong> the "partials" subfolder - so any .KIT files placed in that folder will not be compiled. They <em>will</em> however, be included into any files which reference them. This allows us to build a kit of parts in the "kits/partials" folder and use them to build up pages quickly and simply.</p><p>As you build, codekit will compile on the fly, saving your .HTML files into the <code>/app</code> folder.
+    <h2>How do I get started?</h2>
+    
+    <p>Take a look at the code making up the <a href="/index.html" target="_blank">homepage</a> of the default app in LDL-Kickoff - it is almost entirely constructed out of "kit parts".
+    <pre>
+      &lt;!-- @include "partials/header" --&gt;
+      &lt;div id="pageContent" class="container homePage"&gt;
+        &lt;div id="content" class="row"&gt;
+          &lt;div class="col-sm-8"&gt;
+            &lt;!--@include "/partials/carousel"--&gt;
+          &lt;/div&gt;
+          &lt;div class="col-sm-4"&gt;
+          &lt;!--@include "/partials/RightColumn-Asides/related-stuff"--&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;!--@include "/partials/landing-list"--&gt;
+        &lt;!--@include "/partials/landing-more-list"--&gt; 
+      &lt;/div&gt;
+      &lt;!-- @include "partials/footer" --&gt;
+    </pre>
+    Some of the inlude files are themselves made up out of include files - take the <code>partials/header</code> for example, which references both the <code>search</code> and <code>nav/topnav</code> KIT files.
+   </p>
+    
+
+  </div>
+  <div id="rightColumn" class="col-sm-4">
+        <!-- @include "partials/documentation/related-stuff" -->
+        <!-- @include "partials/documentation/documentation-nav" -->
+    </div>
+</div>
+<!--
+ #########################################################
+-->
+<!-- @include "partials/footer" -->

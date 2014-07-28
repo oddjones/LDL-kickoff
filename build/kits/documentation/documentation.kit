@@ -1,0 +1,38 @@
+<!-- @include "partials/header" -->
+<!--
+ ######   #######  ##    ## ######## ######## ##    ## ######## 
+##    ## ##     ## ###   ##    ##    ##       ###   ##    ##    
+##       ##     ## ####  ##    ##    ##       ####  ##    ##    
+##       ##     ## ## ## ##    ##    ######   ## ## ##    ##    
+##       ##     ## ##  ####    ##    ##       ##  ####    ##    
+##    ## ##     ## ##   ###    ##    ##       ##   ###    ##    
+ ######   #######  ##    ##    ##    ######## ##    ##    ##    
+-->
+<div id="pageContent" class="container">
+  <!-- @include "partials/nav/breadcrumb" -->
+  <div id="content" class="col-sm-8">
+    <!--Kickoff documentation specific-->
+    <input type="hidden" id="dNavAcc" value="1"/>
+    <input type="hidden" id="dNavItem" value="0"/>
+  <!--ends-->
+    <h1>About the LDL-Kickoff Starter Kit</h1>
+    <p class="lead">The starter kit is a "kickoff" scaffolding for <a href="https://incident57.com/codekit/" target="_blank">Codekit</a>, based around the <a href="http://kickoff.thehivemedia.com" target="_blank">"CODEKIT Kickoff"</a> scaffolding produced by The Hive Media. It's job is to simplify and separate all the discrete elements we may use to put together a website into a kit of parts, speeding up design and development and reducing duplication and site bloat.</p>
+    <h2>How does it work?</h2>
+    <p>A working knowledge of the basics of Codekit will help (<a href="https://incident57.com/codekit/videos.html" target="_blank">videos</a>) but the short answer is that Codekit compiles and minifies stuff for you. It uses the latest versions of compilers and minifiers for Javascript, SASS and LESS to turn a jigsaw puzzle of components into a folder structure of simple, clean HTML with compiled CSS and JS files ready to import straight into Umbraco.</p>
+    <h2>How do I get started?</h2>
+    <p>The kickoff starter kit itself is expected to build over time as we add elements with each site we build. It will be hosted in github at <a href="https://github.com/oddjones/LDL-Kickoff">https://github.com/oddjones/LDL-Kickoff</a>. Kickoff is intended for use as a starter kit, so you should copy a new version of it for each new site you intend to create with it. The site will need to be set up as a virtual host in Apache (<a href="https://discussions.apple.com/docs/DOC-3083">Setting up Apache on Mac OS X</a>) with the root folder pointing to the "app" subfolder of your kickoff folder. If you're not comfortable with virtual hosts, then use <a href="http://clickontyler.com/virtualhostx/">VirtualHostX</a>. <strong>You cannot use Codekit or LDL-Kickoff to build folders without using a web server</strong>. Once you have the site working on your Mac, then simply drag and drop the working folder onto codekit to create a new project.</p>
+    <h2>How do I use it?</h2>
+    <p>There will be pages (written by you hopefully!) devoted to every aspect of using LDL-Kickoff, but the basics are this. We are creating a library of re-usable and re-purposable "nuggets" of code. <strong>So every little piece of HTML you write, you should think "Can this be re-purposed?"</strong> - if so, save it as a discrete file. Codekit lets you build pages using a really simple "@include" directive - similar to an old-school ASP include file. If the snippet uses any specific (non-bootstrap) styles then they should be saved as a separate .scss (sass) file - these can be included into the global APP.scss file just the same as the snippet itself is included in the HTML.
+    <h2>What libraries and frameworks do we use?</h2>
+    <p>We're starting kickoff as simply as possible - we just want to get it adopted and get comfortable with using it, so we're not making extensive use of SASS frameworks, grunt minifiers or what-have-you. Codekit is a single (Mac only) app which we install and configure to do the work for us. We make use of Bootstrap 3, which we keep up to date using the <a href="http://bower.io/">Bower</a> package manager (installed with codekit). We're utilising <a href="http://jquery.com/download/">jQuery 1.11.1 and jquery-migrate-1.2.1</a> (correct at time of writing: 24/7/2014) so as to stay as up-to-date as possible with the library whilst maintaining backwards compatibility for internal (IE8!) sites and applications. We make use of SASS rather than LESS (which requires us to use the SASS Bootstrap port) and <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> for iconography (again kept up to date using Bower).</p>
+
+  </div>
+  <div id="rightColumn" class="col-sm-4">
+        <!-- @include "partials/documentation/related-stuff" -->
+        <!-- @include "partials/documentation/documentation-nav" -->
+    </div>
+</div>
+<!--
+ #########################################################
+-->
+<!-- @include "partials/footer" -->

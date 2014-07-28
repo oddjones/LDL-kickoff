@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="keywords" content="">        
+
+        <title>LDL Kickoff Template :: </title>		
+
+        <link rel="stylesheet" media="screen" href="/css/app.css">
+    	<!--[if lt IE 9]>
+    	   <script src="/scripts/html5shiv.min.js"></script>
+            <script src="/scripts/respond.min.js"></script>
+    	<![endif]-->
+    </head>
+<!--[if lt IE 7 ]> <body class="ie6 ieA"> <![endif]-->
+<!--[if IE 7 ]>    <body class="ie7 ieA"> <![endif]-->
+<!--[if IE 8 ]>    <body class="ie8 ieA"> <![endif]-->
+<!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
+<!--[if gt IE 9]>  <body>             <![endif]-->
+<!--[if !IE]><!--> <body>         <!--<![endif]-->
+<!--
+##     ## ########    ###    ########  ######## ########  
+##     ## ##         ## ##   ##     ## ##       ##     ## 
+##     ## ##        ##   ##  ##     ## ##       ##     ## 
+######### ######   ##     ## ##     ## ######   ########  
+##     ## ##       ######### ##     ## ##       ##   ##   
+##     ## ##       ##     ## ##     ## ##       ##    ##  
+##     ## ######## ##     ## ########  ######## ##     ## 
+-->
+<a class="sr-only sr-only-focusable" href="#content">skip to page content </a>
+<header class="container-fluid" id="siteHeader">
+    <div class="container">
+    <div class="branding col-sm-5">
+        <a href="/">
+            <h1>LDL-Kickoff</h1>
+        </a>
+    </div>
+    <div class="col-sm-4 col-sm-offset-3">
+    <form class="navbar-form" role="search">
+  	<div class="input-group custom-search-form">
+		<input type="text" class="form-control" placeholder="Search">
+		<span class="input-group-btn">
+		<button class="btn btn-default" type="button">
+			<span class="glyphicon glyphicon-search"></span>
+		</button>
+		</span>
+	</div><!-- /input-group -->
+</form>    </div>
+    </div>
+    
+<div class="container">
+	<nav class="navbar navbar-inverse " role="navigation">
+		<ul class="nav navbar-nav ">
+		    <li id="li-home"><a href="/">Home</a></li>
+		    <li id="li-landing"><a href="/landing.html">Landing</a></li>
+		    <li id="li-detail"><a href="/detail.html">Detail</a></li>
+		    <li id="li-list"><a href="/list.html">List</a></li>
+		    <li id="li-standard"><a href="/standard.html">Standard</a></li>
+		    <li id="li-documentation"><a href="/kickoff-docs/documentation.html">Documentation</a></li>
+		    <li id="li-docs-bored"><a href="/kickoff-docs/docs-bored.html">Bored?</a></li>
+		</ul>
+	</nav>
+</div></header><!--
+ ######   #######  ##    ## ######## ######## ##    ## ######## 
+##    ## ##     ## ###   ##    ##    ##       ###   ##    ##    
+##       ##     ## ####  ##    ##    ##       ####  ##    ##    
+##       ##     ## ## ## ##    ##    ######   ## ## ##    ##    
+##       ##     ## ##  ####    ##    ##       ##  ####    ##    
+##    ## ##     ## ##   ###    ##    ##       ##   ###    ##    
+ ######   #######  ##    ##    ##    ######## ##    ##    ##    
+-->
+<div id="pageContent" class="container">
+  	<!--
+	 ######  ########  ##     ## ##     ## ########  
+	##    ## ##     ## ##     ## ###   ### ##     ## 
+	##       ##     ## ##     ## #### #### ##     ## 
+	##       ########  ##     ## ## ### ## ########  
+	##       ##   ##   ##     ## ##     ## ##     ## 
+	##    ## ##    ##  ##     ## ##     ## ##     ## 
+	 ######  ##     ##  #######  ##     ## ########  
+	-->
+
+	 <ol class="breadcrumb">
+	 	<li><a href="/">Home</a></li>
+	 	<li class="active">LDL-Kickoff Documentation</li>
+	 </ol>	
+
+	<!--
+	#########################################################
+	-->  <div id="content" class="col-sm-8">
+    <!--Kickoff documentation specific-->
+    <input type="hidden" id="dNavAcc" value="2"/>
+    <input type="hidden" id="dNavItem" value="1"/>
+    <!--ends-->
+    <h1>Working with .KIT files</h1>
+    <p class="lead">.KIT files are Codekit's way to implement .ASP style includes. KIT files are complied by Codekit into .HTML files located in the root of the .app folder of your compiled application. KIT files form the basis of LDL-Kickoff's modular construction. You can include one KIT file into another simply by using the <code>&lt;!-- @include "filename" --&gt;</code> directive. You can nest kits within kits within kits if you like.</p>
+    <h2>How does it work?</h2>
+    <div class="col-sm-8 pull-right imgHolder">
+      <img src="/kickoff-docs/img/kit-files.png" alt="compiling KITs">
+    </div>
+    <p>The LDL-Kickoff codekit project has been set up to automatically compile all .KIT files into the root app folder. By default, we have placed all our KIT files in a "kits" folder, within our main BUILD folder. It has also been set up to <strong><em>ignore</em></strong> the "partials" subfolder - so any .KIT files placed in that folder will not be compiled. This allows us to build a kit of parts in the "kits/partials" folder and use them to build up pages quickly and simply.</p>
+    <h2>How do I get started?</h2>
+    
+    <p>Take a look at the code making up the <a href="/index.html" target="_blank">homepage</a> of the default app in LDL-Kickoff - it is almost entirely constructed out of "kit parts".
+    <pre>
+      &lt;!-- @include "partials/header" --&gt;
+      &lt;div id="pageContent" class="container homePage"&gt;
+        &lt;div id="content" class="row"&gt;
+          &lt;div class="col-sm-8"&gt;
+            &lt;!--@include "/partials/carousel"--&gt;
+          &lt;/div&gt;
+          &lt;div class="col-sm-4"&gt;
+          &lt;!--@include "/partials/RightColumn-Asides/related-stuff"--&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;!--@include "/partials/landing-list"--&gt;
+        &lt;!--@include "/partials/landing-more-list"--&gt; 
+      &lt;/div&gt;
+      &lt;!-- @include "partials/footer" --&gt;
+    </pre>
+    Some of the inlude files are themselves made up out of include files - take the <code>partials/header</code> for example, which references both the <code>search</code> and <code>nav/topnav</code> KIT files.
+   </p>
+ 
+    <h1>Where do I start?</h1>
+    <p class="lead">Build your HTML layouts in the <strong>build</strong> folder. Take the <code>index.kit</code> file for a start and open up its component parts. Either edit or make copies of the components and replace them with sections pertinent to your own site. We have provided the <code>mockup</code> and <code>construction</code> folders for you to dump Photoshop/ Balsamiq/ Saved HTML startup code into - these folders mean the project has its whole history saved together. To that end, there's even a <code>project</code> folder for pre-reqs, PIDs, spider documents etc. The <code>tests</code> folder is for handing over to dev/ops (or at least it will be when I can think of something to put in there).
+    </p>
+    <div class="bs-callout bs-callout-info"><h4>REMEMBER!</h4> Only the compiled <code>/app</code> folder will be handed over to developers, so don't worry about making a mess in the build folder, that's your folder to do with as you please!</div>
+    <h2></h2>
+    <p>
+    <div class="col-sm-8 pull-left imgHolder">
+      <img src="/kickoff-docs/img/build-folder.png" alt="The build folder - do your work here.">
+      <span class="imgCaption">The build folder - do your work here</span>
+    </div>As a "starter for ten" I've included some of the partial kit files used for other projects (such as Connect2 and LDL Home)</p>
+
+  </div>
+  <div id="rightColumn" class="col-sm-4">
+        		<div class="well related">
+			<h2>Library Documentaion</h2>
+			<p>LDL-Kickoff leans heavily on a number of frameworks and libraries as well as the Codekit application and "kickoff" methodology. Documentation is available here:</p>
+			<ul>
+				<li><a href="http://getbootstrap.com/css/" target="_blank">Bootstrap 3</a></li>
+				<li><a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">Font Awesome</a></li>
+				<li><a href="http://api.jquery.com" target="_blank">jQuery 1.11.1</a></li>
+				<li><a href="http://bower.io/" target="_blank">Bower Package Manager</a></li>
+				<li><a href="http://clickontyler.com/support/" target="_blank">VirtualHostX</a></li>
+				<li><a href="https://incident57.com/codekit/videos.html" target="_blank">Codekit</a></li>
+				<li><a href="http://kickoff.thehivemedia.com/" target="_blank">Codekit Kickoff</a></li>
+			</ul>
+		</div>        <div id="archiveNav">
+  <h2>Documentation Nav</h2>
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-1">Getting Started</a>
+                </h4>
+              </div>
+              <div id="collapse-1" class="panel-collapse collapse">
+                <ul class="list-group">
+                  <li class="list-group-item item-0"><a href="/kickoff-docs/documentation.html">About the LDL-Kickoff starter kit</a></li>
+                  <li class="list-group-item item-1"><a href="/kickoff-docs/docs-apache.html">Setting Up Apache</a></li>
+                  <li class="list-group-item item-2"><a href="/kickoff-docs/docs-vhosts.html">Working with Virtual Hosts</a></li>
+                  <li class="list-group-item item-3"><a href="/kickoff-docs/docs-GIT.html">Installing GIT</a></li>
+                  <li class="list-group-item item-4"><a href="/kickoff-docs/docs-GIT.html">Working with GIT</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-2">Working with LDL-Kickoff</a>
+                </h4>
+              </div>
+              <div id="collapse-2" class="panel-collapse collapse">
+                <ul class="list-group">
+                  <li class="list-group-item item-1"><a href="/kickoff-docs/docs-kit.html">.KIT files and includes</a></li>
+                  <li class="list-group-item item-2"><a href="/kickoff-docs/docs-js.html">Compiling Javascript</a></li>
+                  <li class="list-group-item item-3"><a href="/kickoff-docs/docs-sass.html">Compiling SASS</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>    </div>
+</div>
+<!--
+ #########################################################
+-->
+<!--
+########  #######   #######  ######## ######## ########  
+##       ##     ## ##     ##    ##    ##       ##     ## 
+##       ##     ## ##     ##    ##    ##       ##     ## 
+######   ##     ## ##     ##    ##    ######   ########  
+##       ##     ## ##     ##    ##    ##       ##   ##   
+##       ##     ## ##     ##    ##    ##       ##    ##  
+##        #######   #######     ##    ######## ##     ## 
+-->
+
+<footer class="container-fluid" id="siteFooter">
+	<div class="container" id="footerContent">
+
+	</div>
+</footer>
+		<script src="/scripts/app.min.js"></script>	
+		<!--[if lt IE 9]>
+			<script src="/scripts/polyfills.min.js"></script>
+		<![endif]-->
+<!--
+ #########################################################
+-->
+    </body>
+</html>

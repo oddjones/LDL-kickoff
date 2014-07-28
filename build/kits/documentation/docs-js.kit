@@ -1,0 +1,118 @@
+<!-- @include "partials/header" -->
+<!--
+ ######   #######  ##    ## ######## ######## ##    ## ######## 
+##    ## ##     ## ###   ##    ##    ##       ###   ##    ##    
+##       ##     ## ####  ##    ##    ##       ####  ##    ##    
+##       ##     ## ## ## ##    ##    ######   ## ## ##    ##    
+##       ##     ## ##  ####    ##    ##       ##  ####    ##    
+##    ## ##     ## ##   ###    ##    ##       ##   ###    ##    
+ ######   #######  ##    ##    ##    ######## ##    ##    ##    
+-->
+<div id="pageContent" class="container">
+  <!-- @include "partials/nav/breadcrumb" -->
+  <div id="content" class="col-sm-8">
+    <!--Kickoff documentation specific-->
+    <input type="hidden" id="dNavAcc" value="2"/>
+    <input type="hidden" id="dNavItem" value="2"/>
+    <!--ends-->
+    <h1>Compiling Javascript Files</h1>
+    <p class="lead">LDL-Kickoff compiles all the base Javascript files it uses down into one (minimised) app.js file, which is saved into the <code>/app/scripts</code> folder. An additional <code>/app/scripts/polyfills.js</code> file is provided for IE specific polyfills. This ensures all key Javascripts are loaded as quickly as possible and in the correct order, without depending on external CDNs (which can prove difficult for intranet sites to resolve through corporate proxies).</p>
+   <h2>What scripts are included?</h2>
+    <div class="col-sm-9 pull-right imgHolder">
+      <img src="/kickoff-docs/img/app-js.png" alt="Javascript file construction">
+      <span class="imgCaption">The app.js file imports whatever library and plugin files you need</span>
+    </div>
+    <p>The <code>app.js</code> file consists of a single file, with a simple loading structure which allows for an ordered and logical progression through "listening" scripts and "initiating" scripts (see below). Library files are prepended and appended to the app.js file using simple @include directives - this can also be done in the Codekit GUI (see right). By default LDL Kickoff prepends jQuery (we use 1.11.1 and jquery migrate 1.2.1), a compiled bootstrap.min.js and appends a sample jQuery plugin "notify".js. (it's best to append</p><p>The <code>/build/js/polyfills.js</code> is referenced <strong>after</strong> jquery (loaded at the end of the page) so as to allow polyfills which make use of jquery to work. If you have a polyfill which needs loading prior to DOM construction (such as <code>respond.js</code>) please load this separately in the conditional code block provided in the <code>&lt;head&gt;</code> section in the <code>header.kit</code></p>
+          <h2>Debugging</h2>
+     
+     <div class="col-sm-9 pull-left imgHolder">
+      <img src="/kickoff-docs/img/js-output-style.png" alt="Javascript file construction">
+      <span class="imgCaption">The app.js file imports whatever library and plugin files you need</span>
+    </div>  <p>You can stop the app.js file being minified while you're debugging by changing the "output style" in Codekit (see left).</p>
+    <div class="clear"></div>
+    <h2>Load order</h2>
+    <p>Assuming the <code>header.kit</code> and <code>footer.kit</code> templates aren't changed then the default load order for scripts is as follows...</p>
+    <pre>
+      &lt;html&gt;
+        &lt;head&gt;
+        ...
+        &lt!--[if lt IE 9]&gt;
+          &lt;script src="/scripts/html5shiv.min.js"&gt;&lt;/script&gt;
+          &lt;script src="/scripts/respond.min.js"&gt;&lt;/script&gt;
+        &lt;![endif]--&gt;
+        ...
+        &lt;/head&gt;
+        &lt;body&gt;
+        ...
+          &lt;footer&gt;
+          &lt;/footer&gt;
+          &lt;script src="/scripts/app.min.js"&gt;&lt;/script&gt; 
+          &lt;!--[if lt IE 9]&gt;
+            &lt;script src="/scripts/polyfills.min.js"&gt;&lt;/script&gt;
+          &lt;![endif]--&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+      </pre>
+
+    <h2>app.js File construction</h2>
+    <p>Whilst you're free  to build your app.js file how you like, the default structure provided by codekit kickoff is very neat - it allows you to break down your included files and inline functions into <strong>settings, listeners and initiators</strong>, saving "script spaghetti" which can be very difficult to untangle later on.</p>
+    <pre>
+    // Custom JS Application Code
+
+// If using JSLint for syntax debugging, include the following
+//global $, console, alert, App
+
+$(function() { 
+  App.init();
+});
+
+var App = (function() { 
+
+  var settings = { 
+    "name": "My Application", 
+    "url": "application_url.com",
+    "version": "1.0.0"  
+  };
+
+  var listen = function() { 
+    // Application Listeners can be loaded here for easy configuration  
+
+    //Fake up Nav highlighting for mockup only
+    //Feel free to remove below function (to line)
+
+    var thisPage = "home.html";
+    if(document.location.pathname.length >1){
+      thisPage = document.location.pathname.match(/[^\/]+$/)[0];
+    }
+      thisPage = thisPage.replace('.html','');
+      $('#li-'+thisPage).addClass('active');
+      
+    //---------------------------------------
+    
+  
+    //console.log("Ready and Listening captain!");
+  };  
+
+  var init = function() {
+    // Kick off the listeners
+    listen();
+    // Application has been initalized
+    //console.log(settings.name + "(v" + settings.version + ") Started"); 
+  };
+    
+  return {
+    init: init
+  };
+  
+}());
+    </pre>
+  </div>
+  <div id="rightColumn" class="col-sm-4">
+        <!-- @include "partials/documentation/related-stuff" -->
+        <!-- @include "partials/documentation/documentation-nav" -->
+    </div>
+</div>
+<!--
+ #########################################################
+-->
+<!-- @include "partials/footer" -->

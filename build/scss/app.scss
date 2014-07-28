@@ -1,0 +1,77 @@
+// Application Style Controller
+// Description: Set Imports and Variables (Image) Here
+
+// Image Path Relative to /app/_/css
+// ------------------------------------------------------------------------
+$img-url: "../img";
+// Example of how to use -- background: url("#{$img-url}/background-image.png") repeat top left;
+
+// Include Libaries
+@import "libraries";
+
+// Color Palette & Mixins for the Application
+// ------------------------------------------------------------------------
+@import "globals/colors";
+@import "globals/custom-mixins";
+@import "globals/fonts";
+
+// Globals (base colours, font sizes etc)
+// ------------------------------------------------------------------------
+@import "globals/defaults";
+
+// Start Application Styles & Settings
+// ------------------------------------------------------------------------
+@import "partials/viewport";
+
+// Add additional /partials Below
+// ------------------------------------------------------------------------
+// Why partials? They allow us to keep elements styled individually.
+// We create a separate partial scss file if this entity has separate 
+// styling over and above Bootstrap but before the site brand.
+
+// @import "partials/...";
+
+@import "partials/header";
+@import "partials/footer";
+@import "partials/nav/archive-nav";
+
+// Mobile Specific Styles & Settings
+@import "globals/mobile";
+
+//text styling
+.bs-callout{padding:20px;margin:20px 0;border:1px solid #eee;border-left-width:5px;border-radius:3px}
+.bs-callout h4{margin-top:0;margin-bottom:5px}
+.bs-callout p:last-child{margin-bottom:0}
+.bs-callout code{border-radius:3px}
+.bs-callout+.bs-callout{margin-top:-5px}
+.bs-callout-danger{border-left-color:#d9534f}
+.bs-callout-danger h4{color:#d9534f}
+.bs-callout-warning{border-left-color:#f0ad4e}
+.bs-callout-warning h4{color:#f0ad4e}
+.bs-callout-info{border-left-color:#5bc0de}
+.bs-callout-info h4{color:#5bc0de}
+
+//landing pages
+.landing-list li{display:block;padding:7px;position:relative;}
+.landing-list li a{display:block;background:$clouds;padding:7px;min-height:120px;@include border-radius-whole(7px);}
+.landing-list li a p{color:$dark-grey;}
+.landing-list li a:hover{background-color:#d8d8d8;}
+.landing-list i{margin:-10px 0px 0px 20px;line-height:120px;vertical-align:middle;float:left;width:120px;height:120px;font-size:80px;color:$dark-grey;z-index: 6;}
+.landing-list h3{color:$peter-river;margin:0px 0px 5px 0px;}
+.more-links li{display:inline;padding:0 5px 0 0px;}
+.more-links li:after{content:" |";}
+
+//List pages
+.listPage .jumbotron img{float:left;margin-right:20px;}
+.listPageList li img.thumbnail{float:left;max-height:125px;margin-right:20px;}
+.listPageList li {min-height:145px;padding-bottom:0 20px 0 20px;border-bottom: 1px solid $clouds;}
+p.meta{font-style: italic;font-size: 80%;}
+.superscript {vertical-align:super;font-size: 70%;}
+
+//Detail page
+
+//inline images
+.imgHolder img{max-width:100%!important;height:auto;}
+.imgCaption{font-size:80%;font-style: italic;}
+#content ul{list-style: disc;margin-left:20px;}
+

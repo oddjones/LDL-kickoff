@@ -1,0 +1,15 @@
+//I'm a partial - so please ensure all my CSS elements have a Namespace particular to this partial
+
+ #archiveNav .glyphicon { margin-right:10px; }
+    #archiveNav .panel-collapse>.list-group .list-group-item:first-child {border-top-right-radius: 0;border-top-left-radius: 0;}
+    #archiveNav .panel-collapse>.list-group .list-group-item {border-width: 1px 0;}
+    #archiveNav li.active{background-color:$light-grey;}
+    #archiveNav .panel-collapse>.list-group {margin-bottom: 0;}
+    #archiveNav .panel-collapse .list-group-item {border-radius:0;}
+
+    #archiveNav .panel-collapse .list-group .list-group {margin: 0;margin-top: 10px;}
+    #archiveNav .panel-collapse .list-group-item li.list-group-item {margin: 0 -15px;border-top: 1px solid #ddd;border-bottom: 0;padding-left: 30px;}
+    #archiveNav .panel-collapse .list-group-item li.list-group-item:last-child {padding-bottom: 0;}
+
+    #archiveNav .panel-collapse div.list-group div.list-group{margin: 0;}
+    #archiveNav .panel-collapse div.list-group .list-group a.list-group-item {border-top: 1px solid #ddd;border-bottom: 0;padding-left: 30px;}

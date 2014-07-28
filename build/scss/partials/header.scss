@@ -1,0 +1,5 @@
+//I'm a partial - so please ensure all my CSS elements have a Namespace particular to this partial
+
+#siteHeader{background-color:#6AAA4A;min-height:60px;border-bottom:3px solid $wet-asphalt;margin-bottom:15px;}
+#siteHeader .branding i{font-size:40px;color:white;float:left;margin-right:10px;}
+#siteHeader .branding h1{height:50px;margin-left:-50px;padding-left:60px;line-height:60px;vertical-align:middle;background:url(/img/codekit-icon.png) top left no-repeat;color:white;font-size: 32px;margin-top:10px;}

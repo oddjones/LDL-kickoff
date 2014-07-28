@@ -1,0 +1,32 @@
+<!-- @include "partials/header" -->
+<!--
+ ######   #######  ##    ## ######## ######## ##    ## ######## 
+##    ## ##     ## ###   ##    ##    ##       ###   ##    ##    
+##       ##     ## ####  ##    ##    ##       ####  ##    ##    
+##       ##     ## ## ## ##    ##    ######   ## ## ##    ##    
+##       ##     ## ##  ####    ##    ##       ##  ####    ##    
+##    ## ##     ## ##   ###    ##    ##       ##   ###    ##    
+ ######   #######  ##    ##    ##    ######## ##    ##    ##    
+-->
+<div id="pageContent" class="container">
+  <!-- @include "partials/nav/breadcrumb" -->
+  <div id="content" class="col-sm-8">
+  <!--Kickoff documentation specific-->
+    <input type="hidden" id="dNavAcc" value="2"/>
+    <input type="hidden" id="dNavItem" value="3"/>
+  <!--ends-->
+    <h1>Compiling SASS (.scss) Files</h1>
+    <p class="lead">At release 0.01 LDL-Kickoff has its own set of mixins which build on top of Bootstrap's built in collection. This allows us to simply include a compiled stylesheet for Bootstrap without relying on a specific version (we still have a number of sites which either don't use bootstrap or use version 2.x). It's up for discussion whether we start utilising Bootstrap's <code>variables.scss</code> and <code>mixins</code> Whilst Codekit will support SASS libraries and frameworks such as Compass and Bourbon it's considered a good idea to "walk before we run" - there's no reason why we shouldn't adopt these later on, but it's best to get comfortable with the basic concepts first.</p>
+    <h2>How does it work?</h2>
+    <p>Much in the same way as with the project Javascript files, LDL-Kickoff compiles a number of different library, framework, app specific and LDL global files together into a single .CSS file (<code>/app/css/app.min.css</code>). The file which does all the work is <code>/build/scss/app.scss</code>. The easiest way to see how it works is to look at the code of this file. Notice that it uses @import statements to include all the separate scss files it is referencing. They are listed in the table below with their usage</p>
+    <table class="table table-bordered table-striped"><thead><tr><th>file</th><th>contents</th></tr></thead><tbody><tr><td>libraries</td><td>Imports all the library files (bootstrap, font-awesome etc)</td></tr><tr><td>globals/colors</td><td>A list of custom defined colors - these are illustrated on the "color-swatches.png" - this also includes global LCC/LDL colours</td></tr><tr><td>globals/custom-mixins</td><td>gradients, rounded corners, circles, shadows, global variables etc <strong>(add your own!)</strong></td></tr><tr><td>globals/fonts</td><td>used for defining custom fonts</td></tr><tr><td>globals/defaults</td><td>Defines some resets. There are also some LDL/LCC specific global elements defined here such as<ul><li><strong>landing-list</strong>: Landing page thumbnail elements</li><li><strong>more-links</strong>: Liverpool.gov landing page "more" list</li><li><strong>listPageList</strong>: "News Item" style large list</li><li><strong>imgHolder</strong>: placeholder for inline img with caption</li></ul></td></tr><tr><td>partials/viewport</td><td>App/Site specific styles - these may be branding such as Connect2</td></tr><tr><td>partials/...</td><td>Any repeatable sections - these will be .kit files (such as right column wells etc) which have dependent styles</td></tr><tr><td>globals/mobile</td><td>Mobile specific</td></tr></tbody></table>
+  </div>
+  <div id="rightColumn" class="col-sm-4">
+        <!-- @include "partials/documentation/related-stuff" -->
+        <!-- @include "partials/documentation/documentation-nav" -->
+    </div>
+</div>
+<!--
+ #########################################################
+-->
+<!-- @include "partials/footer" -->
