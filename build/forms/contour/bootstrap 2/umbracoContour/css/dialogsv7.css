@@ -1,0 +1,9 @@
+﻿#dialogcontainer {
+    width: 600px;
+    height: 330px;
+}
+
+.dialogcontrols {
+    padding-bottom: 10px;
+    padding-left: 20px;
+}

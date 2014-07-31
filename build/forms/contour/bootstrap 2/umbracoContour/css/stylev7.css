@@ -1,0 +1,30 @@
+﻿/*a.add
+{
+	background: url(img/add_small_grey.png) no-repeat;
+    margin-left: 5px;
+}
+a.delete
+{
+	background: url(img/delete_small_grey.png) no-repeat;
+	margin-left: 5px;
+}
+a.update
+{
+	background: url(img/edit_small_grey.png)  no-repeat;
+	margin-left: 5px;
+}*/
+
+ /*.umb-control-group {
+            padding-bottom: 20px!important;;
+            margin-bottom: 15px!important;
+            border-bottom: 1px solid #f8f8f8!important;;
+        }*/
+
+.modalform h1 {
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+#editnewprevalue {
+    margin-bottom: 10px;
+}
