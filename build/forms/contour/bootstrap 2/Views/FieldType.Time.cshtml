@@ -1,0 +1,50 @@
+@model Umbraco.Forms.Mvc.Models.FieldViewModel
+@using System.Web.Script.Serialization;
+@using System.Web;
+
+@{
+    IEnumerable<int> hours = Enumerable.Range(0, 24);
+    IEnumerable<int> minutes = Enumerable.Range(0, 60);
+    var hourValue = HttpContext.Current.Request[Model.Name + "_hour"] ?? "";
+    var minuteValue = HttpContext.Current.Request[Model.Name + "_minute"] ?? "";
+    
+    <div>
+        <select id="@{@Model.Id}_hour" name="@{@Model.Id}_hour"
+                @if (Model.Mandatory) { <text> data-val="true" data-val-required="Hour is required" </text>     }>
+            <option value=''>Hour</option>
+            @foreach (int hour in hours)
+            {
+                <option value='@hour.ToString("D2")'
+                        @{if (hour.ToString("D2") == hourValue){ <text> selected="selected" </text> }}>
+                        @hour.ToString("D2")
+                </option>
+            }
+        </select>
+
+        @{if (Model.Mandatory)
+        {
+            <span class="field-validation-valid" data-valmsg-for="@{@Model.Id}_hour" data-valmsg-replace="true"></span>
+        }}
+
+        <select id="@{@Model.Id}_minute" name="@{@Model.Id}_minute"
+                @if (Model.Mandatory) { <text> data-val="true" data-val-required="Minute is required" </text>     }>
+            <option value=''>Minute</option>
+            @foreach (int minute in minutes)
+            {
+                <option value='@minute.ToString("D2")'
+                        @{if (minute.ToString("D2") == minuteValue){ <text> selected="selected" </text>        }}>
+                    @minute.ToString("D2")
+                </option>
+            }
+        </select>
+
+        @{if (Model.Mandatory)
+        {
+            <span class="field-validation-valid" data-valmsg-for="@{@Model.Id}_minute" data-valmsg-replace="true"></span>
+        }}
+    </div>
+
+}
+
+@* Hidden field used to 'bypass' Contour's Mandatory server validation - validation should be undertaken by the custom control  *@
+<input type="hidden" name="@Model.Name" id="@Model.Id" class="first" value="1" />

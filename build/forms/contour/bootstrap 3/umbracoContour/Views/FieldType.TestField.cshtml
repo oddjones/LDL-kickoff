@@ -1,0 +1,21 @@
+﻿@model Umbraco.Forms.Mvc.Models.FieldViewModel
+
+<table id="@Model.Id">
+    <thead>
+        <tr>
+
+            @foreach (Umbraco.Forms.Mvc.Models.PrevalueViewModel pv in Model.PreValues)
+            {
+                <td>@pv.Value</td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        @foreach (Umbraco.Forms.Mvc.Models.PrevalueViewModel pv in Model.PreValues)
+        {
+            <td><input type='text' name='@string.Concat(Model.Id,"_",pv.Value)' id='@string.Concat(Model.Id,"_",pv.Value)' /></td>
+        }
+    </tr>
+    </tbody>
+</table>

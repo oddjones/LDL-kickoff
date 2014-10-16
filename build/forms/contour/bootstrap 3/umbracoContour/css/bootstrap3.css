@@ -1,0 +1,17 @@
+/*
+Contour Form Stylesheet
+
+BOOTSTRAP 3.x Version
+#######################
+
+Only use in sites which reference the CURRENT, 
+SUPPORTED version of Bootstrap.
+
+Author: DJ 
+Date:   1/8/2014
+
+*/
+
+.formFooter{text-align:right; border-top:1px solid #ededed;padding-top:20px;margin-top:-20px;}
+.formHeader{border-bottom:1px solid #ededed;}
+span.contourIndicator{display:inline-block;text-indent:5px;color:red;font-size:30px;line-height:16px;}

@@ -1,0 +1,122 @@
+<!--
+Contour Form renderer
+
+BOOTSTRAP 3.1 Version
+#######################
+
+Only use in sites which reference the CURRENT, 
+SUPPORTED version of Bootstrap.
+
+Author: DJ 
+Date:   1/8/2014
+
+Edited: 6/10/2014
+By: MR
+Reason: changed hide caption condition (lines 65-83) to change the control to full width of the form if there's no caption
+-->
+
+@inherits WebViewPage<Umbraco.Forms.Mvc.Models.FormViewModel>      
+@using Umbraco.Forms.Core
+@using Umbraco.Forms.Mvc.Models
+@using Umbraco.Forms.Mvc.BusinessLogic
+@using Umbraco.Forms.MVC.Extensions
+
+@if (Model.SubmitHandled)
+{
+    <p class="contourMessageOnSubmit">@Html.Raw(Model.MessageOnSubmit)</p>
+}
+else
+{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    @Html.Partial(FormViewResolver.GetScriptView(Model.FormId), Model)
+                                                                     
+
+    <div id="contour_form_@{@Model.FormName.Replace(" ","")}" class="contour form-horizontal @Model.CssClass">
+        @using (Html.BeginForm("ContourForm", "FormRender", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => Model.FormId)
+
+            <input type="hidden" name="FormStep" id="FormStep" value="@Model.FormStep"/>
+            <input type="hidden" name="RecordId" id="RecordId" value="@Model.RecordId"/>
+            <input type="hidden" name="PreviousClicked" id="PreviousClicked" value="@Model.PreviousClicked"/>
+           
+         
+            <div class="contourPage">
+                <h4 class="contourPageName formHeader">@Html.Raw(Model.CurrentPage.Caption)</h4>
+                <p>Fields marked <span class="contourIndicator">*</span> are required.</p>
+                @if (Model.ShowValidationSummary)
+                {
+                    @Html.ValidationSummary(false)
+                }
+                @foreach (FieldsetViewModel fs in Model.CurrentPage.Fieldsets)
+                {
+                    <fieldset class="contourFieldSet">
+                        @if (!string.IsNullOrEmpty(fs.Caption))
+                        {   
+                            <legend>@Html.Raw(fs.Caption)</legend>
+                        }
+                        @foreach (FieldViewModel f in fs.Fields)
+                        {
+                            bool hidden = f.HasCondition && f.ConditionActionType == FieldConditionActionType.Show;
+                            <div class="@f.CssClass form-group" @{if (hidden){<text> style="display: none"</text>}}>
+                                @{
+									var controlclass = "";
+									if(!f.HideLabel)
+									{
+										@:<label for="@f.Id" class="control-label col-sm-3">@Html.Raw(f.Caption) 
+										if (f.ShowIndicator)
+										{
+											@:<span class="contourIndicator">@Model.Indicator</span>
+										}
+										@:</label>
+										controlclass = "col-sm-4 controls";
+									}
+									else
+									{
+										controlclass= "col-sm-12 controls";
+
+									}
+                                }
+								<div class="@controlclass">
+
+                                @Html.Partial(FieldViewResolver.GetFieldView(Model.FormId, f.FieldTypeName, f.Caption), f)
+                                @if (Model.ShowFieldValidaton){<span class="help-inline">@Html.ValidationMessage(f.Id)</span>}                                                         
+                                </div>
+                                @if (!string.IsNullOrEmpty(f.ToolTip)){<p class="help-block alert alert-info col-sm-4">@f.ToolTip</p>}
+                            </div>
+                        }
+                    </fieldset>
+                }
+                <div style="display:none">
+                    <input type="text" id="HoneyPot"/>
+                </div>
+            </div>
+
+            <div class="contourNavigation col-sm-8 formFooter">
+
+                @if (Model.IsMultiPage)
+                {
+                    if (!Model.IsFirstPage)
+                    {
+                        <input class="cancel" type="submit" value="@Model.PreviousCaption" onclick="document.getElementById('PreviousClicked').value = 'back'"/>
+                    }
+                    if (!Model.IsLastPage)
+                    {
+                         <input type="submit" value="@Model.NextCaption"/>
+                    }
+                }
+                @if (Model.IsLastPage)
+                {
+
+                
+                    <input type="submit" class="btn btn-lg btn-primary" value="@Model.SubmitCaption"/>
+                
+                }
+            </div>                        
+            
+        }
+    </div>
+}

@@ -1,0 +1,5 @@
+Strongly agree
+Agree
+Neither agree or disagree
+Disagree
+Strongly disagree

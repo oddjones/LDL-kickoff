@@ -1,0 +1,121 @@
+@model Umbraco.Forms.Mvc.Models.FieldViewModel
+@using LivGov.Address;
+@using LivGov.Address.Service;
+
+@{
+    string fieldName = Model.Name;
+    
+    string postcodeKey = fieldName + "_postcode";
+    string postcodeVal = HttpContext.Current.Request[postcodeKey] ?? "";
+
+    string uprnKey = fieldName + "_uprn";
+    string uprnVal = HttpContext.Current.Request[uprnKey] ?? "";
+
+    string uprnDivStyle = "display: none;";
+    List<Address> addresses = null;
+    if (!String.IsNullOrEmpty(uprnVal))
+    {
+        uprnDivStyle = "";
+        
+        // Retrieve the list of addresses matching the specified postcode
+        try
+        { 
+            AddressService addrService = new AddressService();
+            addresses = addrService.GetAddressByPostcode(postcodeVal);
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
+    string addressLine1Key = fieldName + "_address_line1";
+    string addressLine1Val = HttpContext.Current.Request[addressLine1Key] ?? "";
+
+    string addressLine2Key = fieldName + "_address_line2";
+    string addressLine2Val = HttpContext.Current.Request[addressLine2Key] ?? "";
+
+    string addressCityKey = fieldName + "_address_city";
+    string addressCityVal = HttpContext.Current.Request[addressCityKey] ?? "";
+
+    string addressPostcodeKey = fieldName + "_address_postcode";
+    string addressPostcodeVal = HttpContext.Current.Request[addressPostcodeKey] ?? "";
+
+    string manualAddressStyle = "display: none;";
+    if (!String.IsNullOrEmpty(addressLine1Val) || !String.IsNullOrEmpty(addressLine2Val) || !String.IsNullOrEmpty(addressCityVal) || !String.IsNullOrEmpty(addressPostcodeVal))
+    {
+        manualAddressStyle = "";
+    }
+}
+
+<div class="LdlAddressLookup" data-field-id="@{@Model.Name}" @{if (Model.Mandatory) { <text> data-field-mandatory="1"</text>}}>
+
+    
+    <label  for="@{@Model.Name}_postcode">Postcode:</label>
+    <input type="text" name="@{@Model.Name}_postcode" id="@{@Model.Name}_postcode" class="text LdlAddressLookupPostcode" value="@postcodeVal" maxlength="10" />
+    <span class="field-validation-valid" data-valmsg-for="@{@Model.Name}_postcode" data-valmsg-replace="true"></span>
+
+    <div style="@uprnDivStyle" class="LdlAddressSelectListDiv">
+        <label for="@{@Model.Name}_uprn">
+            Select Address@{if (Model.Mandatory)
+            {<text>&nbsp;<span class="mandatory-marker">*</span></text>}}
+        </label>
+        <select id="@{@Model.Name}_uprn" name="@{@Model.Name}_uprn" class="LdlAddressSelectList">
+            <option value="">-- Please select --</option>
+            @{
+                if (addresses != null && addresses.Count > 0)
+                {
+                    foreach (var address in addresses)
+                    {
+
+                        <option value="@{@address.UPRN}##@{@address.Number}"
+                                @{ if (address.UPRN == uprnVal) { <text> selected="selected" </text>   }  }>
+                            @address.AddressLines
+                        </option>
+                    }
+                }
+            }
+        </select>
+
+    </div>
+
+    <span class="LdlAddressLookupMessage">&nbsp;</span>
+
+    <button type='button' class="LdlAddressLookupButton btn btn-primary">
+        <span>Lookup Postcode</span>
+    </button>
+    
+    <div class="LdlAddressLookupManualAddress" style="@manualAddressStyle">
+        <label for="@{@Model.Name}_address_line1">Address line 1@{if (Model.Mandatory)
+        {<text>&nbsp;<span class="mandatory-marker">*</span></text>}}</label> <input type="text" name="@{@Model.Name}_address_line1" id="@{@Model.Name}_address_line1" class="text" value="@addressLine1Val" maxlength="30" /> 
+        <span class="field-validation-valid" data-valmsg-for="@{@Model.Name}_address_line1" data-valmsg-replace="true"></span>
+        <br />
+
+        <label for="@{@Model.Name}_address_line2">Address line 2</label><input type="text" name="@{@Model.Name}_address_line2" id="@{@Model.Name}_address_line2" class="text" value="@addressLine2Val" maxlength="30" />
+        <span class="field-validation-valid" data-valmsg-for="@{@Model.Name}_address_line2" data-valmsg-replace="true"></span>
+        <br />
+
+        <label for="@{@Model.Name}_address_city">City@{if (Model.Mandatory)
+        {<text>&nbsp;<span class="mandatory-marker">*</span></text>}}</label> <input type="text" name="@{@Model.Name}_address_city" id="@{@Model.Name}_address_city" class="text" value="@addressCityVal" maxlength="30" />
+        <span class="field-validation-valid" data-valmsg-for="@{@Model.Name}_address_city" data-valmsg-replace="true"></span>
+        <br />
+
+        <label for="@{@Model.Name}_address_postcode">Postcode@{if (Model.Mandatory)
+        {<text>&nbsp;<span class="mandatory-marker">*</span></text>}}</label> <input type="text" name="@{@Model.Name}_address_postcode" id="@{@Model.Name}_address_postcode" class="text LdlAddressLookupPostcode" value="@addressPostcodeVal" maxlength="10" />
+        <span class="field-validation-valid" data-valmsg-for="@{@Model.Name}_address_postcode" data-valmsg-replace="true"></span>
+    </div>
+
+    <button type='button' class="LdlAddressClearButton btn btn-primary hideme">
+        <span>Clear Address</span>
+    </button>
+
+    @* Hidden field used to 'bypass' Contour's Mandatory server validation - validation should be undertaken by the custom control  *@
+    <input type="hidden" name="@Model.Name" id="@Model.Id" value="1" />
+<div class=" alert alert-info"><p>Use the Lookup Postcode button to find your address.</p><p>If you cannot find your address, <a class="LdlAddressLookupManualLink" href="#">please enter it manually</a></p></div>
+
+</div>
+
+
+
+
+
+
