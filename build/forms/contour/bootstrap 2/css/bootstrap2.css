@@ -15,6 +15,7 @@ Date:   13/10/2014
 .checkbox {padding-left:0px;}
 .checkbox .controls input{margin-left:20px;}
 .hideme{position:absolute;margin-left:-9999px;}
+fieldset {padding:0.4em!important;}
 
 
 /*CUSTOM FIELDS*/
@@ -24,6 +25,9 @@ Date:   13/10/2014
 .LdlRepeater fieldset {border-top:1px solid #eee!important;}
 .LdlRepeaterItem{clear:right;border-bottom:1px solid #eee!important;padding-bottom:60px;}
 .LdlRepeaterAdd{margin-top:-60px;}
+
+/*TEXT BLOCK*/
+.nolabel{margin-left:-130px;}
 
 /*FILE UPLOAD*/
 .LDLFileUploadContainer{max-width:310px; background:whitesmoke; border:1px solid #bbb;padding:5px 10px;}

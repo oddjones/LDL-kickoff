@@ -50,8 +50,7 @@
 <div class="LdlAddressLookup" data-field-id="@{@Model.Name}" @{if (Model.Mandatory) { <text> data-field-mandatory="1"</text>}}>
 
     
-    <label  for="@{@Model.Name}_postcode">Postcode:</label>
-    <input type="text" name="@{@Model.Name}_postcode" id="@{@Model.Name}_postcode" class="text LdlAddressLookupPostcode" value="@postcodeVal" maxlength="10" />
+    <input type="text" name="@{@Model.Name}_postcode" id="@{@Model.Name}_postcode" class="text LdlAddressLookupPostcode" value="@postcodeVal" maxlength="10" placeholder="postcode"/>
     <span class="field-validation-valid" data-valmsg-for="@{@Model.Name}_postcode" data-valmsg-replace="true"></span>
 
     <div style="@uprnDivStyle" class="LdlAddressSelectListDiv">
