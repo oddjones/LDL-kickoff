@@ -31,7 +31,10 @@ else
     Html.EnableUnobtrusiveJavaScript();
 
     @Html.Partial(FormViewResolver.GetScriptView(Model.FormId), Model)
-                                                                     
+
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/umbraco/plugins/umbracocontour/css/jquery-ui-1.8.18.custom.css")" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/umbraco/plugins/umbracocontour/css/defaultform.css")" />
+                                                                 
 
     <div id="contour_form_@{@Model.FormName.Replace(" ","")}" class="contour form-horizontal @Model.CssClass">
         @using (Html.BeginForm("ContourForm", "FormRender", FormMethod.Post, new { enctype = "multipart/form-data" }))
